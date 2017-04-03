@@ -27,7 +27,7 @@ HTML 中的脚本必须位于 <script> 与 </script> 标签之间。
 # JavaScript 表单验证
 ```javascript
 /*
-HTML 表单验证可以通过 JavaScript 来完成。
+HTML 表单验证(validate)可以通过 JavaScript 来完成。
 以下实例代码用于判断表单字段(fname)值是否存在，如果存在，则弹出信息，否则阻止表单提交.
 */
 function validateForm() {

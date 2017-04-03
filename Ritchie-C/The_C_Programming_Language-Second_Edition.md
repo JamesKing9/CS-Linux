@@ -44,3 +44,89 @@ There are only a few basic data types in C:
 | char | a single byte, capable of holding one character in the local character set |
 | int | an integer, typically reflecting the natural size of integers on the host machine |
 
+
+
+
+
+# 4 - Functions and Program Structure
+
+## 4.5 Header Files
+>Let is now consider dividing(分离) the calculator program into several source files, as it might be is each of the components（组件） were substantially（实质上） bigger. The main function would go in one file,  which we will call `main.c`; `push`, `pop`, and their variables go into a second file, `stack.c`; `getop` goes into a third, `getop.c`. Finally, `getch` and `ungetch` go into a fourth file, `getch.c`; we separate（分离） them from the others because they would come from a separately-compiled library（分别编译的库） in a realistic program（实际的程序中）.
+
+>There is one more thing to worry about - the definitions and declarations shared among files. As much as possible, we want to centralize this, so that there is only one copy to get and keep right as the program evolves. Accordingly, we will place this common material in a header file, `calc.h`, which will be included as necessary. (The `#include` line is described in Section 4.11.) The resulting program then looks like this:
+
+*calc.h*
+```c
+#define NUMBER '0'
+void push(double);
+double pop(void);
+int getop(char []);
+int getch()
+```
+*main.c*
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include "calc.h"
+#define MAXOP 100
+main() {
+  ...
+}
+```
+*getop.c*
+```c
+#include <stdio.h>
+#include <ctype.h>
+#include "calc.h"
+getop() {
+  ...
+}
+```
+*stack.c*
+```c
+#include <stdio.h>
+#include "calc.h"
+#define MAXVAL 100
+int sp =0;
+double val[MAXVAL];
+void push(double) {
+  ...
+}
+double pop(void) {
+  ...
+}
+```
+*getch.c*
+```c
+#include <stdio.h>
+# define BUFSIZE 100
+char buf[BUFSIZE];
+int bufp = 0;
+int getch(void) {
+  ...
+}
+void ungetch(int) {
+  ...
+}
+```
+
+# 4.11 The C Preprocessor
+>C provides certain language facilities by means of a preprocessor, which is conceptionally a separate first step in compilation. The two most frequently used features are `#include`, to include the contents of a file during compilation, and `#define`, to replace a token by an arbitrary(任意的) sequence of characters. Other features described in this section include conditional compilation and macros with arguments.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
