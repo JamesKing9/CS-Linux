@@ -1,6 +1,6 @@
 /**
-* shellSort.java
-*/
+ * shellSort.java
+ */
 class ShellSortApp {
 	public static void main(String[] args) {
 		int maxSize = 10;
